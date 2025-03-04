@@ -7,9 +7,10 @@ public class Player : MonoBehaviour
     private CharacterController character;
     private Vector3 direction;
     private ParticleSystem trailParticles;
-
+    public AudioSource jumpSound;
     public float gravity = 9.81f*2f;
     public float jumpForce = 8f;
+    public AudioSource powerupSound;
     public bool IsInvincible { get; private set; } = false;
 
     public void init()
@@ -41,6 +42,7 @@ public class Player : MonoBehaviour
             if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
             {
                 direction = Vector3.up * jumpForce;
+                jumpSound.Play();
             }
         }
         character.Move(direction * Time.deltaTime);
@@ -53,6 +55,7 @@ public class Player : MonoBehaviour
 
     private IEnumerator InvincibilityRoutine(float duration, float speedMultiplier)
     {
+        powerupSound.Play();
         IsInvincible = true; // Enable invincibility
         Debug.Log("Invincibility Activated!");
 

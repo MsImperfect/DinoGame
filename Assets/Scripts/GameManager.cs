@@ -22,6 +22,7 @@ public class GameManager : MonoBehaviour
     public TextMeshProUGUI pausedText;
     private int lastMilestone = 0;
     private float invincibilityIncrease = 200;
+    public AudioSource gameOverSound;
 
     private void Awake()
     {
@@ -83,6 +84,7 @@ public class GameManager : MonoBehaviour
         spawner.gameObject.SetActive(false);
         gameOverText.gameObject.SetActive(true);
         retryButton.gameObject.SetActive(true);
+        gameOverSound.Play();
         UpdateHighScore();
     }
     private void Update()
