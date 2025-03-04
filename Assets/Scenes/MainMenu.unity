@@ -797,7 +797,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: PS:Use ESC or P key to pause
+  m_text: PS:Use ESC or P to pause
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 50a3a9c6205a27647bf65894f750b59b, type: 2}
   m_sharedMaterial: {fileID: -1274845255214892866, guid: 50a3a9c6205a27647bf65894f750b59b, type: 2}
