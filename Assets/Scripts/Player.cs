@@ -12,6 +12,7 @@ public class Player : MonoBehaviour
     public float jumpForce = 8f;
     public AudioSource powerupSound;
     public bool IsInvincible { get; private set; } = false;
+    public int extraLives = 0;
 
     public void init()
     {
@@ -77,9 +78,16 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.CompareTag("Obstacle") && !IsInvincible)
+        if (other.CompareTag("Obstacle") && !IsInvincible)
         {
             GameManager.Instance.GameOver();
         }
+        if (other.CompareTag("ExtraLife"))
+        {
+            extraLives++;
+            powerupSound.Play();
+            Destroy(other.gameObject);
+        }
     }
+
 }

@@ -3,6 +3,7 @@ using TMPro;
 using UnityEngine.UI;
 using System.IO;
 using UnityEngine.SceneManagement;
+using System.Collections;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
@@ -15,6 +16,7 @@ public class GameManager : MonoBehaviour
     public Button retryButton;
     public TextMeshProUGUI scoreText;
     public TextMeshProUGUI highScoreText;
+    public TextMeshProUGUI extraLivesText;
     private float score;
     private int highScore;
     private string filePath;
@@ -72,20 +74,31 @@ public class GameManager : MonoBehaviour
         pausedText.gameObject.SetActive(false);
         invincibilityIncrease = 200;
         player.init();
+        DisplayExtraLives();
         Time.timeScale = 1f; 
         isPaused = false;
     }
 
     public void GameOver()
     {
-        gameSpeed = 0f;
-        enabled = false;
-        player.gameObject.SetActive(false);
-        spawner.gameObject.SetActive(false);
-        gameOverText.gameObject.SetActive(true);
-        retryButton.gameObject.SetActive(true);
-        gameOverSound.Play();
-        UpdateHighScore();
+        if(player.extraLives>0)
+        {
+            player.extraLives--;
+            StartRevival();
+            RevivePlayer();  
+            DisplayExtraLives();
+        }
+        else
+        {
+            gameSpeed = 0f;
+            enabled = false;
+            player.gameObject.SetActive(false);
+            spawner.gameObject.SetActive(false);
+            gameOverText.gameObject.SetActive(true);
+            retryButton.gameObject.SetActive(true);
+            gameOverSound.Play();
+            UpdateHighScore();
+        }
     }
     private void Update()
     {
@@ -106,6 +119,7 @@ public class GameManager : MonoBehaviour
                 player.ActivateInvincibility(5f,2f);
                 invincibilityIncrease +=  invincibilityIncrease * gameSpeedIncrease;
             }
+            DisplayExtraLives();
         }
     }
 
@@ -162,6 +176,41 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1f; // Ensure the game runs normally when returning
         SceneManager.LoadScene("MainMenu"); // Change "MainMenu" if your scene has a different name
+    }
+
+    private void RevivePlayer()
+    {
+        player.gameObject.SetActive(true);
+        player.transform.position = new Vector3(0, 1, 0);  // Reset position
+        StartCoroutine(FlashEffect());  // Flash effect after revival
+    }
+
+    // Flash effect after revival
+    private IEnumerator FlashEffect()
+    {
+        Renderer renderer = player.GetComponent<Renderer>();
+        for (int i = 5; i > 0; i--)  // Flash 5 times
+        {
+            renderer.enabled = !renderer.enabled;
+            yield return new WaitForSeconds(0.2f);
+        }
+        renderer.enabled = true;
+    }
+
+    private void DisplayExtraLives()
+    {
+        extraLivesText.text = player.extraLives.ToString();
+    }
+
+    private void StartRevival()
+    {
+        Time.timeScale = 0.3f;
+        Invoke("RestoreSpeed", 0.5f);
+    }
+
+    private void RestoreSpeed()
+    {
+        Time.timeScale = 1f;
     }
 }
 

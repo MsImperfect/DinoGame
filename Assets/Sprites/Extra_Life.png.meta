@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 82cc2b6c592c71d43806094c40498ab0
+guid: fff4ff9fd98816d4aab02347210e03a1
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -1033320785580691340
-    second: Quitbg (1)_0
+      213: -3677823600542822442
+    second: Extra_Life_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,13 +113,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Quitbg (1)_0
+      name: Extra_Life_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
         width: 88
-        height: 96
+        height: 69
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 4707f646838e8a1f0800000000000000
-      internalID: -1033320785580691340
+      spriteID: 6dfc817dbeeb5fcc0800000000000000
+      internalID: -3677823600542822442
       vertices: []
       indices: 
       edges: []
