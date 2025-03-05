@@ -499,6 +499,21 @@ MonoBehaviour:
     spawnChance: 0.05
   - prefab: {fileID: 3940239527447658221, guid: 9bc82088a6cc3ba4f93e937632510d05, type: 3}
     spawnChance: 0.025
+  obstacles:
+  - mirrageObstaclePrefabs: {fileID: 3184673307697016057, guid: ea7f65d2841b57c4dbc501a871b3e025, type: 3}
+    mirrageSpawnChance: 0.2
+  - mirrageObstaclePrefabs: {fileID: 4088748905940462390, guid: c0efabd12d71b26469edc8e18c6151ad, type: 3}
+    mirrageSpawnChance: 0.18
+  - mirrageObstaclePrefabs: {fileID: 3572588164842969663, guid: dbe7f68ebd30a8f4bb387d23099f6f6d, type: 3}
+    mirrageSpawnChance: 0.16
+  - mirrageObstaclePrefabs: {fileID: 5007531648188031610, guid: ecec49202bba75c45bfdb3bcc9d3f28d, type: 3}
+    mirrageSpawnChance: 0.14
+  - mirrageObstaclePrefabs: {fileID: 3572588164842969663, guid: dbe7f68ebd30a8f4bb387d23099f6f6d, type: 3}
+    mirrageSpawnChance: 0.12
+  - mirrageObstaclePrefabs: {fileID: 8658241428726131980, guid: a9a56f01bf61af843beda8b0d8e32687, type: 3}
+    mirrageSpawnChance: 0.1
+  - mirrageObstaclePrefabs: {fileID: 7483934862076162803, guid: 3c03ed8d0b92318498c5ce1876b4f9df, type: 3}
+    mirrageSpawnChance: 0.05
 --- !u!4 &671906552
 Transform:
   m_ObjectHideFlags: 0

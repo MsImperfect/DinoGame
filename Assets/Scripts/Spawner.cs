@@ -10,8 +10,16 @@ public class Spawner : MonoBehaviour
         public float spawnChance;
     }
 
-    public SpawnableObject[] spawnObject;
+    [System.Serializable]
+    public struct MirrageObstacle
+    {
+        public GameObject mirrageObstaclePrefabs;
+        [Range (0f, 1f)]
+        public float mirrageSpawnChance;
+    }
 
+    public SpawnableObject[] spawnObject;
+    public MirrageObstacle[] obstacles;
     private float minSpawnRate = 1f;
     private float maxSpawnRate = 2f;
 
@@ -41,5 +49,23 @@ public class Spawner : MonoBehaviour
         }
 
         Invoke(nameof(Spawn), Random.Range(minSpawnRate, maxSpawnRate));
+    }
+
+    public void MirrageSpawn()
+    {
+        float mirrageSpawnChance = Random.value;
+
+        foreach (var obj in obstacles)
+        {
+            if (mirrageSpawnChance < obj.mirrageSpawnChance)
+            {
+                GameObject obstacle = Instantiate(obj.mirrageObstaclePrefabs);
+                obstacle.transform.position += transform.position;
+                break;
+            }
+            mirrageSpawnChance -= obj.mirrageSpawnChance;
+        }
+
+        Invoke(nameof(MirrageSpawn), Random.Range(minSpawnRate, maxSpawnRate));
     }
 }

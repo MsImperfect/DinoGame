@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     private int lastMilestone = 0;
     private float invincibilityIncrease = 200;
     public AudioSource gameOverSound;
+    public bool mirrage = false;
 
     private void Awake()
     {
@@ -38,7 +39,7 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void onDestroy()
+    private void OnDestroy()
     {
         if(Instance == this)
         {
@@ -63,6 +64,7 @@ public class GameManager : MonoBehaviour
         {
             Destroy(obstacle.gameObject);
         }
+        mirrage = false;
         gameSpeed = initialGameSpeed;
         enabled = true;
         score = 0;
@@ -118,6 +120,11 @@ public class GameManager : MonoBehaviour
                 Debug.Log(score);
                 player.ActivateInvincibility(5f,2f);
                 invincibilityIncrease +=  invincibilityIncrease * gameSpeedIncrease;
+            }
+            if(score>=1000 && !mirrage)
+            {
+                mirrage = true;
+                spawner.MirrageSpawn(); 
             }
             DisplayExtraLives();
         }

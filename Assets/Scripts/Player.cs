@@ -88,6 +88,11 @@ public class Player : MonoBehaviour
             powerupSound.Play();
             Destroy(other.gameObject);
         }
+        if (other.CompareTag("MirrageObstacle"))
+        {
+            Destroy(other.gameObject);
+            return; 
+        }
     }
 
 }

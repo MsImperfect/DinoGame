@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Obstacle
   - ExtraLife
+  - MirrageObstacle
   layers:
   - Default
   - TransparentFX
