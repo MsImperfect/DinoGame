@@ -29,7 +29,9 @@ public class AnimatedSprite : MonoBehaviour
         }
         if (frame >= 0 && frame < sprites.Length)
         {
+            Color currentColor = spriteRenderer.color;
             spriteRenderer.sprite = sprites[frame];
+            spriteRenderer.color = new Color(currentColor.r, currentColor.g, currentColor.b, currentColor.a);
         }
         Invoke(nameof(Animate),1f/GameManager.Instance.gameSpeed);
     }

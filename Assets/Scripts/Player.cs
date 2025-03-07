@@ -11,9 +11,9 @@ public class Player : MonoBehaviour
     public float gravity = 9.81f*2f;
     public float jumpForce = 8f;
     public AudioSource powerupSound;
+    private SpriteRenderer spriteRenderer;
     public bool IsInvincible { get; private set; } = false;
     public int extraLives = 0;
-
     public void init()
     {
         if (trailParticles != null)
@@ -23,6 +23,7 @@ public class Player : MonoBehaviour
     private void Start()
     {
         trailParticles = GetComponentInChildren<ParticleSystem>();
+        spriteRenderer = GetComponentInChildren<SpriteRenderer>();
         init();
     }
     private void Awake()
