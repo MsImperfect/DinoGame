@@ -75,8 +75,9 @@ public class Player : MonoBehaviour
 
         GameManager.Instance.gameSpeed *= speedMultiplier;
 
-        yield return new WaitForSeconds(duration);
-
+        yield return new WaitForSeconds(duration-duration/4);
+        StartCoroutine(FlashEffect());
+        yield return new WaitForSeconds(duration/4);
         IsInvincible = false; // Disable invincibility
         Debug.Log("Invincibility Over!");
         if (trailParticles != null)
@@ -85,6 +86,16 @@ public class Player : MonoBehaviour
         GameManager.Instance.gameSpeed /= speedMultiplier;
     }
 
+    private IEnumerator FlashEffect()
+    {
+        Renderer renderer = GetComponent<Renderer>();
+        for (int i = 5; i > 0; i--)  // Flash 5 times
+        {
+            renderer.enabled = !renderer.enabled;
+            yield return new WaitForSeconds(0.2f);
+        }
+        renderer.enabled = true;
+    }
 
     private void OnTriggerEnter(Collider other)
     {
