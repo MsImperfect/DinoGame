@@ -37,15 +37,24 @@ public class Player : MonoBehaviour
     private void Update()
     {
         direction += Vector3.down * gravity * Time.deltaTime;
-        
-        if(character.isGrounded)
+
+        if (character.isGrounded)
         {
             direction = Vector3.down;
-            if(Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
+            if (Input.GetKeyDown(KeyCode.Space) || Input.GetKeyDown(KeyCode.UpArrow) || Input.GetKeyDown(KeyCode.W))
             {
-                direction = Vector3.up * jumpForce;
-                jumpSound.Play();
+                jump();
             }
+        }
+        character.Move(direction * Time.deltaTime);
+    }
+
+    public void jump()
+    {
+        if (character.isGrounded)
+        {
+            direction = Vector3.up * jumpForce;
+            jumpSound.Play();
         }
         character.Move(direction * Time.deltaTime);
     }
